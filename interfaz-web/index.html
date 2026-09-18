@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel de pedidos y seguimiento de envíos de TechLogistics S.A.">
+  <title>TechLogistics | Operaciones</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="TechLogistics inicio">
+      <span class="brand-mark">TL</span>
+      <span>TechLogistics <small>OPERACIONES</small></span>
+    </a>
+    <div class="connection" id="connectionStatus"><span class="status-dot"></span> Comprobando API</div>
+  </header>
+
+  <main id="inicio">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">Centro de operaciones <span>•</span> Guía 4</p>
+        <h1>Pedidos en movimiento.</h1>
+        <p class="lead">Crea órdenes, consulta el catálogo y mantén cada envío bajo control desde un solo lugar.</p>
+      </div>
+      <div class="api-config">
+        <label for="apiBase">URL de la API</label>
+        <div class="api-input"><input id="apiBase" type="url" placeholder="http://localhost:3000/api"><button id="saveApi" type="button" title="Guardar URL">Guardar</button></div>
+      </div>
+    </section>
+
+    <div class="notice" id="globalNotice" role="status" aria-live="polite"></div>
+
+    <section class="workspace" aria-label="Operaciones de pedidos y envíos">
+      <article class="panel order-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Nueva operación</p><h2>Crear pedido</h2></div>
+          <span class="panel-number">01</span>
+        </div>
+        <form id="orderForm">
+          <label for="customer">Cliente</label>
+          <select id="customer" required><option value="">Cargando clientes...</option></select>
+
+          <div class="section-label"><span>Productos</span><button type="button" class="text-button" id="addProduct">+ Añadir producto</button></div>
+          <div id="productRows" class="product-rows"></div>
+          <p class="empty-state" id="productsEmpty">Añade al menos un producto al pedido.</p>
+
+          <div class="order-total"><span>Total estimado</span><strong id="orderTotal">$ 0,00</strong></div>
+          <button class="primary-button" type="submit" id="submitOrder">Crear pedido <span>→</span></button>
+        </form>
+      </article>
+
+      <article class="panel tracking-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Visibilidad logística</p><h2>Rastrear envío</h2></div>
+          <span class="panel-number">02</span>
+        </div>
+        <form id="trackingForm" class="tracking-form">
+          <label for="trackingId">Número de envío</label>
+          <div class="tracking-input"><span>#</span><input id="trackingId" type="number" min="1" placeholder="Ej. 1" required><button type="submit" title="Buscar envío">Buscar</button></div>
+        </form>
+        <div id="trackingResult" class="tracking-result empty-result"><div class="result-icon">⌁</div><p>Introduce un número de envío para consultar su recorrido.</p></div>
+      </article>
+    </section>
+
+    <section class="quick-stats" aria-label="Resumen">
+      <div><span class="stat-label">Estado del sistema</span><strong id="systemState">Conectando</strong></div>
+      <div><span class="stat-label">Catálogo disponible</span><strong id="productCount">-- productos</strong></div>
+      <div><span class="stat-label">Pedidos registrados</span><strong id="orderCount">-- pedidos</strong></div>
+      <div><span class="stat-label">Última consulta</span><strong id="lastQuery">Aún no realizada</strong></div>
+    </section>
+  </main>
+
+  <footer><span>TECHLOGISTICS S.A.</span><span>Gestión de pedidos y envíos</span></footer>
+  <script src="app.js" defer></script>
+</body>
+</html>
